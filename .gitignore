@@ -1,0 +1,12 @@
+# Ignore environment configuration
+.env
+
+# Ignore runtime data and workflows folders
+n8n-data/
+n8n-workflows/
+
+# Ignore node_modules folder (Electron and other dependencies)
+node_modules/
+
+# Ignore AI context documentation
+cursor-context/

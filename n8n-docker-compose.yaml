@@ -1,0 +1,26 @@
+services:
+  n8n:
+    image: n8nio/n8n:${N8N_VERSION:-latest}
+    container_name: n8n
+    ports:
+      - "${N8N_PORT}:${N8N_PORT}"
+    volumes:
+      - ./n8n-data:/home/node/.n8n # runtime data
+      - ./n8n-workflows:/home/node/.n8n/workflows # workflow files
+    environment:
+      - N8N_BASIC_AUTH_ACTIVE=true
+      - N8N_BASIC_AUTH_USER=${N8N_BASIC_AUTH_USER}
+      - N8N_BASIC_AUTH_PASSWORD=${N8N_BASIC_AUTH_PASSWORD}
+      - N8N_HOST=${N8N_HOST}
+      - N8N_PORT=${N8N_PORT}
+      - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
+      - N8N_RUNNERS_ENABLED=true
+      - TZ=${TZ}
+    restart: unless-stopped
+
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://${N8N_HOST}:${N8N_PORT}"]
+      interval: 1s
+      timeout: 1s
+      retries: 5
+      start_period: 1s
