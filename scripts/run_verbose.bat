@@ -46,7 +46,7 @@ if /i "!HEALTH!"=="healthy" (
 )
 
 :open_browser
-REM Optionally open in defauly browser instead of Electron
+REM Optionally open in default browser instead of Electron
 REM start http://localhost:%N8N_PORT%
 
 REM Open in Electron
