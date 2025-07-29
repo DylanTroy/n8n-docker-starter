@@ -1,8 +1,8 @@
 # n8n Workflow Docker Deployment Automation
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-![Last Commit](https://img.shields.io/github/last-commit/yourusername/your-repo-name)
-![Repo Size](https://img.shields.io/github/repo-size/yourusername/your-repo-name)
+![Last Commit](https://img.shields.io/github/last-commit/dylantroy/n8n-docker-starter)
+![Repo Size](https://img.shields.io/github/repo-size/dylantroy/n8n-docker-starter)
 ![Platform](https://img.shields.io/badge/platform-Windows-blue)
 
 ## Overview  
