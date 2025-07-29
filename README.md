@@ -19,9 +19,20 @@ Designed to streamline container orchestration, this setup facilitates rapid sta
 git clone https://github.com/dylantroy/n8n-docker-starter.git
 cd n8n-docker-starter
 
-# Set up environment configuration
-copy .env.example .env
-# Edit .env to set your login credentials and port
+# Run the setup script (recommended for new users)
+scripts\setup.bat
+# OR for PowerShell users: scripts\setup.ps1
+
+# The setup script will:
+# - Check prerequisites (Docker Desktop, Node.js, npm)
+# - Install Electron wrapper dependencies
+# - Create .env configuration file
+# - Create desktop shortcuts
+# - Pull latest n8n Docker image
+
+# Optional: Set up Electron wrapper for native app experience
+cd n8n-electron-wrapper
+npm install
 
 # Start n8n (choose one option)
 scripts\run_silent.bat    # Silent mode - starts in background
@@ -32,6 +43,13 @@ scripts\run_verbose.bat   # Verbose mode - shows logs in separate window
 **That's it!** n8n will be available at `http://${host}:${port}` once the container is healthy.
 
 To stop n8n: `scripts\down.bat`
+
+---
+
+## First Run
+
+On first run, the `n8n-data/` and `n8n-workflows/` folders will be created automatically. 
+n8n will initialize its database and configuration files.
 
 ---
 
@@ -46,7 +64,7 @@ To stop n8n: `scripts\down.bat`
 
 ### Start n8n silently (no logs window)  
 Run `run_silent.bat` or double-click the desktop shortcut **n8n up (silent)**.  
-The container will start detached, the script waits for the container to become healthy, then opens `http://localhost:5678` in your default browser.
+The container will start detached, the script waits for the container to become healthy, then opens `http://${host}:${port}` in your default browser.
 
 ### Start n8n with verbose logs  
 Run `run_verbose.bat` or use the shortcut **n8n up (verbose)**.  
@@ -66,20 +84,12 @@ Run `stop.bat` or `down.bat`, or use the shortcut **n8n down** to cleanly stop a
 
 ## Future Enhancements
 
-- Create an installer or setup script to automate
 - Package Electron wrapper into native executable
 - Add troubleshooting section
 - Add screenshots
-- Setup/installer tasks:
-	- generate .env if missing and prompt user for .env auth vars
-	- create desktop shortcuts
-	- docker setup checks
-	- electron setup checks
-	- electron install
-	- pull latest docker n8n image
-	- create .gitignore if missing
-	- open readme
-	- launch localhost
+- Create installer package for easy distribution
+- Add workflow repository integration
+- Add backup/restore functionality
 
 ---
 
@@ -96,6 +106,8 @@ Run `stop.bat` or `down.bat`, or use the shortcut **n8n down** to cleanly stop a
 - `n8n-workflows/` — Folder for your n8n workflow JSON files (can be a separate repo)  
 
 ### Scripts (`scripts/` folder)
+- `setup.bat` — **NEW**: Complete initial setup for new users (prerequisites, dependencies, configuration)
+- `setup.ps1` — **NEW**: PowerShell version of setup script with better error handling
 - `run_silent.bat` — Starts n8n container quietly in background, waits for health check, opens browser  
 - `run_verbose.bat` — Starts container with logs in a separate console, includes health check feedback  
 - `stop.bat` — Stops and removes the running n8n container  
